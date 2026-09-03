@@ -1,0 +1,10 @@
+<html><body bgcolor=black><img src="/fuzz/base.jpg" width=32 height=32>
+<img src="/fuzz/g_bigdim.gif" width=32 height=32>
+<img src="/fuzz/g_idmismatch.gif" width=32 height=32>
+<img src="/fuzz/g_lzwbad.gif" width=32 height=32>
+<img src="/fuzz/g_trunc.gif" width=32 height=32>
+<img src="/fuzz/j_bigdim.jpg" width=32 height=32>
+<img src="/fuzz/j_comps.jpg" width=32 height=32>
+<img src="/fuzz/j_huff.jpg" width=32 height=32>
+<img src="/fuzz/ok.gif" width=32 height=32>
+</body></html>

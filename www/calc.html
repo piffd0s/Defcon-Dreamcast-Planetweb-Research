@@ -1,0 +1,101 @@
+<html>
+<head><title>DEF CON :: Calculator POC</title>
+<script language="JavaScript">
+var acc = 0;
+var cur = "0";
+var op = "";
+var fresh = 1;
+
+function show() {
+  document.forms[0].d.value = cur;
+}
+
+function digit(n) {
+  if (fresh) { cur = "" + n; fresh = 0; }
+  else if (cur.length < 12) { cur = cur + n; }
+  show();
+}
+
+function doOp(o) {
+  calc();
+  op = o;
+  fresh = 1;
+}
+
+function calc() {
+  var v = cur - 0;
+  if (op == "+") { acc = acc + v; }
+  else if (op == "-") { acc = acc - v; }
+  else if (op == "*") { acc = acc * v; }
+  else if (op == "/") { acc = (v != 0) ? acc / v : 0; }
+  else { acc = v; }
+  cur = "" + acc;
+  op = "";
+  fresh = 1;
+  show();
+}
+
+function clr() {
+  acc = 0; cur = "0"; op = ""; fresh = 1;
+  show();
+}
+</script>
+</head>
+<body bgcolor="#000000" text="#e0e0e0" link="#e0e0e0" vlink="#e0e0e0" alink="#e0e0e0"
+      marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+<center>
+<br>
+<font face="Arial" size="6" color="#e85d2c"><b>DEF&nbsp;CON</b></font><br>
+<font face="Arial" size="4" color="#e0e0e0"><b>CALCULATOR - CODE EXECUTION POC</b></font>
+<br><br>
+
+<form>
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#14161c">
+<tr><td>
+  <table border="0" cellpadding="8" cellspacing="6" bgcolor="#14161c">
+
+  <tr><td colspan="4" bgcolor="#080c08" align="right">
+      <input type="text" name="d" value="0" size="14" maxlength="14"
+             style="background-color:#080c08;color:#78ff78;border:0;font-family:Courier;font-size:18pt;font-weight:bold;text-align:right;width:100%">
+  </td></tr>
+
+  <tr>
+    <td bgcolor="#1e2230" align="center" width="64"><a href="javascript:digit(7)"><font face="Arial" size="5" color="#e0e0e0"><b>7</b></font></a></td>
+    <td bgcolor="#1e2230" align="center" width="64"><a href="javascript:digit(8)"><font face="Arial" size="5" color="#e0e0e0"><b>8</b></font></a></td>
+    <td bgcolor="#1e2230" align="center" width="64"><a href="javascript:digit(9)"><font face="Arial" size="5" color="#e0e0e0"><b>9</b></font></a></td>
+    <td bgcolor="#5a2a1c" align="center" width="64"><a href="javascript:doOp('/')"><font face="Arial" size="5" color="#e85d2c"><b>/</b></font></a></td>
+  </tr>
+  <tr>
+    <td bgcolor="#1e2230" align="center"><a href="javascript:digit(4)"><font face="Arial" size="5" color="#e0e0e0"><b>4</b></font></a></td>
+    <td bgcolor="#1e2230" align="center"><a href="javascript:digit(5)"><font face="Arial" size="5" color="#e0e0e0"><b>5</b></font></a></td>
+    <td bgcolor="#1e2230" align="center"><a href="javascript:digit(6)"><font face="Arial" size="5" color="#e0e0e0"><b>6</b></font></a></td>
+    <td bgcolor="#5a2a1c" align="center"><a href="javascript:doOp('*')"><font face="Arial" size="5" color="#e85d2c"><b>x</b></font></a></td>
+  </tr>
+  <tr>
+    <td bgcolor="#1e2230" align="center"><a href="javascript:digit(1)"><font face="Arial" size="5" color="#e0e0e0"><b>1</b></font></a></td>
+    <td bgcolor="#1e2230" align="center"><a href="javascript:digit(2)"><font face="Arial" size="5" color="#e0e0e0"><b>2</b></font></a></td>
+    <td bgcolor="#1e2230" align="center"><a href="javascript:digit(3)"><font face="Arial" size="5" color="#e0e0e0"><b>3</b></font></a></td>
+    <td bgcolor="#5a2a1c" align="center"><a href="javascript:doOp('-')"><font face="Arial" size="5" color="#e85d2c"><b>-</b></font></a></td>
+  </tr>
+  <tr>
+    <td bgcolor="#1e2230" align="center"><a href="javascript:digit(0)"><font face="Arial" size="5" color="#e0e0e0"><b>0</b></font></a></td>
+    <td bgcolor="#2a1010" align="center"><a href="javascript:clr()"><font face="Arial" size="5" color="#e84a4a"><b>C</b></font></a></td>
+    <td bgcolor="#152a18" align="center"><a href="javascript:calc()"><font face="Arial" size="5" color="#78ff78"><b>=</b></font></a></td>
+    <td bgcolor="#5a2a1c" align="center"><a href="javascript:doOp('+')"><font face="Arial" size="5" color="#e85d2c"><b>+</b></font></a></td>
+  </tr>
+
+  </table>
+</td></tr>
+</table>
+</form>
+
+<br>
+<font face="Arial" size="3" color="#78ff78"><b>* arbitrary code executed on the console</b></font><br>
+<font face="Arial" size="2" color="#808890">
+delivered by the Eden service-subscription RCE - no memory corruption<br>
+PlanetWeb Internet Browser v3.0 - Sega Dreamcast - Hitachi SH-4 - 1999
+</font>
+<br><br>
+</center>
+</body>
+</html>

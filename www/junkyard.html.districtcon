@@ -1,0 +1,16 @@
+<html>
+<head><title>DistrictCon Junkyard</title></head>
+<body bgcolor="#000000" text="#e0e0e0" link="#78ff78" vlink="#78ff78"
+      marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+<center>
+<!-- Full-screen Junkyard splash, served after the browser was hijacked
+     by our remotely-loaded Eden service (openURL -> here). -->
+<!-- the whole splash is a link to the DOOM applet page (click to launch) -->
+<a href="/doom.html"><img src="/junkyard.gif" width="640" height="480" border="0" alt="DistrictCon Junkyard - PWNED - click to LAUNCH DOOM"></a><br>
+<font face="Arial" size="5" color="#78ff78"><a href="/doom.html">[ LAUNCH DOOM ]</a></font><br>
+<font face="Arial" size="2" color="#808090">
+Code execution achieved via the PlanetWeb Eden service-subscription chain.<br>
+</font>
+</center>
+</body>
+</html>

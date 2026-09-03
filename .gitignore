@@ -1,0 +1,77 @@
+# macOS and editor metadata
+.DS_Store
+**/.DS_Store
+*.swp
+*.swo
+*~
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Logs, captures, crash/fuzz output, and emulator save states
+*.log
+*.state
+crashes/
+fuzz_seeds/
+www/fuzz/
+native_report.txt
+arm_result.txt
+heapdiag.txt
+heap_probe.txt
+doom_blob.txt
+
+# Generated Java/native build products. Keep source, manifests, and recipes.
+build/**/*.class
+build/*.jar
+build/*.bin
+build/*.golden
+native_doom/**/*.o
+native_doom/*.elf
+native_doom/*.map
+native_doom/doom.bin
+native_doom/loader.bin
+native_doom/*.golden
+
+# Local toolchains and emulator source/build trees are recreated by the scripts.
+tools/
+src-build/
+
+# Built/signed emulator bundles and mutable per-user emulator state.
+emu/flycast-native/
+emu/fchome/
+emu/flash_baseline/
+emu/flash_backup_*/
+emu/*.state
+emu/*nvmem*.bin
+
+# Firmware, browser-disc extracts/images, and proprietary device SDK archives.
+# These must be obtained legally by each user and kept outside Git.
+1ST_READ*.bin
+*.gdi
+*.cdi
+*.cue
+*.iso
+*.img
+CLASSES.TXT
+CLASSES.ZIP
+PLANETWEB.JAR
+
+# Commercial game data. The license-clean Freedoom input may be versioned.
+wad/*.wad
+!wad/freedoom1.wad
+
+# Optional/local exploit payload overrides.
+name_payload.hex
+mail_subject.txt
+
+# Local backups and archives.
+backup/
+backup.zip
+*.tar
+*.tar.gz

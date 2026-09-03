@@ -1,0 +1,48 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 19bdfee..a1a5f28 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -38,7 +38,11 @@ if(APPLE)
+ 		set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING "Minimum macOS deployment version")
+ 		set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "")
+ 	endif()
+-	set(ZLIB_LIBRARY "-lz" CACHE STRING "Use generic linker flag for Xcode to support multiple SDKs")
++	# Ninja/Makefiles resolve link items as file paths, so the bare "-lz" flag
++	# upstream uses for multi-SDK Xcode builds becomes a missing target there.
++	if(CMAKE_GENERATOR STREQUAL "Xcode")
++		set(ZLIB_LIBRARY "-lz" CACHE STRING "Use generic linker flag for Xcode to support multiple SDKs")
++	endif()
+ endif()
+ 
+ if(LIBRETRO)
+@@ -47,6 +51,13 @@ else()
+ 	project(flycast)
+ endif()
+ 
++# The upstream macOS path uses the Xcode generator, which handles .m/.mm
++# implicitly. Ninja/Makefiles need the languages enabled explicitly.
++if(APPLE)
++	enable_language(OBJC)
++	enable_language(OBJCXX)
++endif()
++
+ option(FLYCAST_PRESEED_DARWIN_XCODE_CHECKS "Pre-seed stable macOS feature checks for faster Xcode generation" ON)
+ if(FLYCAST_PRESEED_DARWIN_XCODE_CHECKS)
+ 	include(DarwinXcodeProbeCache)
+@@ -1416,9 +1427,13 @@ if(NOT LIBRETRO)
+ 				${IOSURFACE_LIBRARY}
+ 				${MULTITOUCH_SUPPORT_LIBRARY})
+ 
+-			add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+-				COMMAND ${CMAKE_COMMAND} -E copy "$ENV{VULKAN_SDK}/lib/libMoltenVK.dylib"
+-				$<TARGET_FILE_DIR:flycast>/../Frameworks/libvulkan.dylib)
++			# Only bundle MoltenVK when a Vulkan SDK is actually in use; an
++			# OpenGL-only build has no SDK to copy from.
++			if(USE_VULKAN AND DEFINED ENV{VULKAN_SDK})
++				add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
++					COMMAND ${CMAKE_COMMAND} -E copy "$ENV{VULKAN_SDK}/lib/libMoltenVK.dylib"
++					$<TARGET_FILE_DIR:flycast>/../Frameworks/libvulkan.dylib)
++			endif()
+ 		endif()
+ 	elseif(UNIX)
+ 		if(NOT BUILD_TESTING)
