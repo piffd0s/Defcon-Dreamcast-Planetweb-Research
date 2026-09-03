@@ -1,0 +1,15 @@
+diff --git a/core/network/picoppp.cpp b/core/network/picoppp.cpp
+--- a/core/network/picoppp.cpp
++++ b/core/network/picoppp.cpp
+@@ -685,7 +685,10 @@ void PicoTcp::picoSocketLoop()
+ 				pico_ipv4_to_string(peer, sock_a->local_addr.ip4.addr);
+ 				DEBUG_LOG(NETWORK, "TcpSink: Outbound from port %d to %s:%d", short_be(port), peer, short_be(sock_a->local_port));
+ 				pico_socket_setoption(sock_a, PICO_TCP_NODELAY, &yes);
+-				pico_tcp_set_linger(sock_a, 10000);
++				// PlanetWeb's StageDoom opens sequential short-lived range requests;
++				// the upstream 10-second linger retains enough picoTCP state to
++				// exhaust the emulated network stack before staging completes.
++				pico_tcp_set_linger(sock_a, 1000);
+ 
+ 				TcpSocket::Ptr psock = TcpSocket::create(io_context, directPlay);
+ 				psock->connect(sock_a);
