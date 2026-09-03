@@ -4,6 +4,7 @@
 
 # Repository metadata and runtime entry points.
 !.gitignore
+!README.md
 !dreamcast_doom_native.py
 !dns_redirect.py
 !eden_mitm.py
