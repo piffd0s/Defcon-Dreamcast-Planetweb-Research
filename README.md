@@ -1,8 +1,7 @@
 # Dreamcast PlanetWeb Native DOOM Demo
 
-This repository contains the minimal, tested files for launching native SH-4 DOOM through Sega Dreamcast PlanetWeb Internet Browser v3.0. The demo chains the browser's Eden service loading behavior, a native `setRawDeviceID` memory-write flaw, and a MIME attachment stack overflow. It runs without attaching a debugger or using GDB to stage the payload.
+This repository contains the minimal, tested files for launching native SH-4 DOOM through Sega Dreamcast PlanetWeb Internet Browser v3.0. The demo chains the browser's Eden service loading behavior, a native `setRawDeviceID` memory-write flaw, and a MIME attachment stack overflow. 
 
-Use this project only with systems, software, and networks you own or are explicitly authorized to test.
 
 ## What is included
 
